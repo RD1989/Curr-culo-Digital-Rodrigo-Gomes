@@ -32,7 +32,7 @@ body[data-theme="tech"] {
     --bg-sidebar:           #0a192f;   /* Azul-marinho escuro elegante */
     --bg-sidebar-item:      rgba(255, 255, 255, 0.06);
     --bg-sidebar-item-hover:rgba(255, 255, 255, 0.11);
-    --bg-switcher:          rgba(0, 0, 0, 0.06);
+    --bg-switcher:          rgba(0, 86, 210, 0.08);
 
     /* Textos principais */
     --text-primary:         #0f172a;
@@ -53,7 +53,7 @@ body[data-theme="tech"] {
     --accent-glow:          rgba(0, 86, 210, 0.22);
 
     /* Bordas */
-    --border:               rgba(0, 0, 0, 0.08);
+    --border:               rgba(0, 86, 210, 0.15);
     --border-hover:         rgba(0, 86, 210, 0.45);
     --border-sidebar:       rgba(255, 255, 255, 0.09);
 
@@ -81,7 +81,7 @@ body[data-theme="marketing"] {
     --bg-sidebar:           #150d22;
     --bg-sidebar-item:      rgba(255, 255, 255, 0.06);
     --bg-sidebar-item-hover:rgba(255, 255, 255, 0.11);
-    --bg-switcher:          rgba(0, 0, 0, 0.06);
+    --bg-switcher:          rgba(124, 58, 237, 0.09);
 
     /* Textos principais */
     --text-primary:         #110a1c;
@@ -102,7 +102,7 @@ body[data-theme="marketing"] {
     --accent-glow:          rgba(124, 58, 237, 0.18);
 
     /* Bordas */
-    --border:               rgba(124, 58, 237, 0.08);
+    --border:               rgba(124, 58, 237, 0.15);
     --border-hover:         rgba(124, 58, 237, 0.45);
     --border-sidebar:       rgba(255, 255, 255, 0.08);
 
@@ -501,10 +501,10 @@ body {
 }
 
 .switcher-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    letter-spacing: 1.2px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: 1.5px;
     text-transform: uppercase;
 }
 
@@ -514,8 +514,8 @@ body {
     background: var(--bg-switcher);
     padding: 4px;
     border-radius: 100px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-sm);
+    border: 1.5px solid rgba(var(--accent-rgb), 0.35);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), var(--shadow-sm);
 }
 
 .switcher-btn {
@@ -527,7 +527,8 @@ body {
     font-family: var(--font-heading);
     font-size: 0.86rem;
     font-weight: 700;
-    color: var(--text-muted);
+    color: var(--text-primary);
+    opacity: 0.88;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -543,8 +544,15 @@ body {
     flex-shrink: 0;
 }
 
-.switcher-btn.active       { color: #ffffff; }
-.switcher-btn:not(.active):hover { color: var(--text-secondary); }
+.switcher-btn.active {
+    color: #ffffff;
+    opacity: 1;
+}
+
+.switcher-btn:not(.active):hover {
+    color: var(--text-primary);
+    opacity: 1;
+}
 
 .switcher-bg {
     position: absolute;
@@ -1625,6 +1633,10 @@ body.switching .main-column {
 
     .quick-info     { justify-content: center; }
     .switcher-wrapper { align-items: center; }
+    .switcher-btn {
+        padding: 0.5rem 0.9rem;
+        font-size: 0.8rem;
+    }
 
     .sidebar {
         grid-template-columns: 1fr;
@@ -1787,8 +1799,11 @@ body.switching .main-column {
         bottom: auto;
         border-radius: var(--radius-sm);
         transform: translateY(0);
+        transition: transform 0.4s var(--ease-smooth);
     }
 
+    body[data-theme="marketing"] .switcher-bg {
+        transform: translateY(100%);
     }
 }
 
@@ -1888,7 +1903,7 @@ body.switching .main-column {
     /* ---- Definição de página A4 ---- */
     @page {
         size: A4 portrait;
-        margin: 12mm 15mm 12mm 15mm;
+        margin: 5mm 8mm 5mm 8mm;
     }
 
     /* ---- Reset global de impressão ---- */
@@ -1913,9 +1928,11 @@ body.switching .main-column {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
         font-family: 'Inter', Arial, sans-serif !important;
-        font-size: 9pt !important;
+        font-size: 8pt !important;
         color: #1e293b !important;
-        line-height: 1.5 !important;
+        line-height: 1.4 !important;
+        max-height: 100%;
+        overflow: hidden !important;
     }
 
     /* ---- Ocultar elementos não imprimíveis ---- */
@@ -1952,7 +1969,7 @@ body.switching .main-column {
         display: flex !important;
         flex-direction: row !important;
         width: 100% !important;
-        gap: 12mm !important;
+        gap: 6mm !important;
         align-items: stretch !important;
     }
 
@@ -1962,26 +1979,26 @@ body.switching .main-column {
     .sidebar {
         display: flex !important;
         flex-direction: column !important;
-        width: 60mm !important;
-        min-width: 60mm !important;
-        max-width: 60mm !important;
+        width: 63mm !important;
+        min-width: 63mm !important;
+        max-width: 63mm !important;
         background: #ffffff !important;
         border-right: 1px solid #e2e8f0 !important;
-        padding: 0 10px 0 0 !important;
-        gap: 10pt !important;
+        padding: 0 8px 0 0 !important;
+        gap: 6pt !important;
         position: relative !important;
     }
 
     /* Bloco de foto no topo da sidebar */
     .print-only-photo {
         display: block !important;
-        margin-bottom: 5pt !important;
+        margin-bottom: 4pt !important;
         text-align: center !important;
     }
 
     .profile-photo-wrapper {
-        width: 48mm !important;
-        height: 48mm !important;
+        width: 34mm !important;
+        height: 34mm !important;
         border-radius: 50% !important;
         padding: 2px !important;
         background: var(--accent) !important;
@@ -2014,14 +2031,14 @@ body.switching .main-column {
 
     .sidebar .section-title {
         font-family: 'Outfit', 'Inter', Arial, sans-serif !important;
-        font-size: 9.5pt !important;
+        font-size: 9pt !important;
         font-weight: 800 !important;
         letter-spacing: 0.5px !important;
         text-transform: uppercase !important;
         color: var(--accent) !important;
         border-bottom: 1.5pt solid var(--accent) !important;
-        padding-bottom: 3pt !important;
-        margin-bottom: 8pt !important;
+        padding-bottom: 2pt !important;
+        margin-bottom: 5pt !important;
         display: flex !important;
         align-items: center !important;
         gap: 4pt !important;
@@ -2029,8 +2046,8 @@ body.switching .main-column {
 
     .sidebar .section-title i {
         display: inline !important;
-        width: 11pt !important;
-        height: 11pt !important;
+        width: 10pt !important;
+        height: 10pt !important;
         color: var(--accent) !important;
     }
 
@@ -2044,26 +2061,26 @@ body.switching .main-column {
     }
 
     .profile-text p {
-        font-size: 8.5pt !important;
+        font-size: 7.5pt !important;
         color: #334155 !important;
-        line-height: 1.5 !important;
-        margin-bottom: 6pt !important;
+        line-height: 1.3 !important;
+        margin-bottom: 3pt !important;
     }
 
     /* ---- CONTATO na sidebar ---- */
     .contact-list {
         display: flex !important;
         flex-direction: column !important;
-        gap: 6pt !important;
+        gap: 4pt !important;
     }
 
     .contact-link {
         display: flex !important;
         align-items: center !important;
-        gap: 6pt !important;
+        gap: 5pt !important;
         background: #f8f9fa !important;
         border: 1px solid #e2e8f0 !important;
-        padding: 4pt 6pt !important;
+        padding: 3pt 4pt !important;
         border-radius: 4px !important;
         text-decoration: none !important;
         transform: none !important;
@@ -2072,9 +2089,9 @@ body.switching .main-column {
 
     .contact-icon {
         display: flex !important;
-        width: 16pt !important;
-        height: 16pt !important;
-        border-radius: 4px !important;
+        width: 13pt !important;
+        height: 13pt !important;
+        border-radius: 3px !important;
         align-items: center !important;
         justify-content: center !important;
         flex-shrink: 0 !important;
@@ -2082,8 +2099,8 @@ body.switching .main-column {
     }
 
     .contact-icon i {
-        width: 9pt !important;
-        height: 9pt !important;
+        width: 7.5pt !important;
+        height: 7.5pt !important;
         color: #ffffff !important;
     }
 
@@ -2093,7 +2110,7 @@ body.switching .main-column {
 
     .contact-label {
         display: block !important;
-        font-size: 6pt !important;
+        font-size: 5.5pt !important;
         text-transform: uppercase !important;
         color: #64748b !important;
         font-weight: 700 !important;
@@ -2101,11 +2118,11 @@ body.switching .main-column {
     }
 
     .contact-val {
-        font-size: 8pt !important;
+        font-size: 7.5pt !important;
         color: #0f172a !important;
         font-weight: 600 !important;
         word-break: break-all !important;
-        line-height: 1.2 !important;
+        line-height: 1.1 !important;
     }
 
     /* ---- FORMAÇÃO na sidebar (só ativa no perfil de Tech) ---- */
@@ -2122,15 +2139,15 @@ body.switching .main-column {
         background: #f8f9fa !important;
         border: 1px solid #e2e8f0 !important;
         border-radius: 4px !important;
-        padding: 6pt !important;
-        margin-bottom: 8pt !important;
+        padding: 3pt 5pt !important;
+        margin-bottom: 3pt !important;
     }
 
     .edu-main-icon { display: none !important; }
 
     .edu-main-badge {
         display: inline-block !important;
-        font-size: 6pt !important;
+        font-size: 5.5pt !important;
         font-weight: 800 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.5px !important;
@@ -2138,54 +2155,54 @@ body.switching .main-column {
         background: var(--accent-subtle) !important;
         border: 1px solid rgba(var(--accent-rgb), 0.20) !important;
         border-radius: 100px !important;
-        padding: 1pt 4pt !important;
-        margin-bottom: 2pt !important;
+        padding: 0.5pt 3pt !important;
+        margin-bottom: 1pt !important;
     }
 
     .edu-main-info h3 {
-        font-size: 8.5pt !important;
+        font-size: 8pt !important;
         font-weight: 700 !important;
         color: #0f172a !important;
-        margin: 2pt 0 1pt !important;
+        margin: 1pt 0 !important;
     }
 
     .edu-main-info p {
-        font-size: 7.5pt !important;
+        font-size: 7pt !important;
         color: #475569 !important;
-        margin-bottom: 2pt !important;
+        margin-bottom: 1pt !important;
     }
 
     .tag-status {
         display: inline-block !important;
-        font-size: 6pt !important;
+        font-size: 5.5pt !important;
         font-weight: 700 !important;
         text-transform: uppercase !important;
         color: #d97706 !important;
         background: rgba(217, 119, 6, 0.1) !important;
         border: 1px solid rgba(217, 119, 6, 0.2) !important;
         border-radius: 3px !important;
-        padding: 1pt 3.5pt !important;
+        padding: 0.5pt 2.5pt !important;
     }
 
     /* Categorias de cursos */
     .edu-categories {
         display: flex !important;
         flex-direction: column !important;
-        gap: 6pt !important;
+        gap: 3pt !important;
     }
 
     .edu-category {
         border-left: 1.5pt solid var(--accent) !important;
-        padding-left: 6pt !important;
+        padding-left: 4pt !important;
     }
 
     .edu-category-title {
-        font-size: 7pt !important;
+        font-size: 6.5pt !important;
         font-weight: 800 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.5px !important;
         color: #475569 !important;
-        margin-bottom: 3pt !important;
+        margin-bottom: 1pt !important;
         display: flex !important;
         align-items: center !important;
         gap: 3pt !important;
@@ -2196,11 +2213,11 @@ body.switching .main-column {
     .edu-pills {
         display: flex !important;
         flex-direction: column !important;
-        gap: 2.5pt !important;
+        gap: 1.5pt !important;
     }
 
     .edu-pill {
-        font-size: 7.5pt !important;
+        font-size: 6.8pt !important;
         color: #334155 !important;
         background: none !important;
         border: none !important;
@@ -2209,13 +2226,13 @@ body.switching .main-column {
         display: flex !important;
         align-items: flex-start !important;
         gap: 3pt !important;
-        line-height: 1.4 !important;
+        line-height: 1.25 !important;
     }
 
     .edu-pill::before {
         content: '•' !important;
         color: var(--accent) !important;
-        font-size: 9pt !important;
+        font-size: 8pt !important;
         flex-shrink: 0 !important;
         margin-top: -1pt !important;
     }
@@ -2227,7 +2244,7 @@ body.switching .main-column {
         list-style: none !important;
         display: flex !important;
         flex-direction: column !important;
-        gap: 4pt !important;
+        gap: 2pt !important;
     }
 
     .certifications-list li {
@@ -2235,26 +2252,27 @@ body.switching .main-column {
         align-items: flex-start !important;
         gap: 4pt !important;
         color: #334155 !important;
+        line-height: 1.2 !important;
     }
 
     .certifications-list li i { display: none !important; }
 
     .certifications-list li strong {
         display: block !important;
-        font-size: 8pt !important;
+        font-size: 7pt !important;
         font-weight: 600 !important;
         color: #0f172a !important;
     }
 
     .certifications-list li span {
-        font-size: 7pt !important;
+        font-size: 6pt !important;
         color: #64748b !important;
     }
 
     .certifications-list li::before {
         content: '•' !important;
         color: var(--accent) !important;
-        font-size: 9pt !important;
+        font-size: 8pt !important;
         flex-shrink: 0 !important;
         margin-top: -1pt !important;
     }
@@ -2263,7 +2281,7 @@ body.switching .main-column {
     .languages-grid {
         display: flex !important;
         flex-direction: column !important;
-        gap: 6pt !important;
+        gap: 4pt !important;
     }
 
     .lang-item {
@@ -2272,22 +2290,22 @@ body.switching .main-column {
     }
 
     .lang-name {
-        font-size: 8.5pt !important;
+        font-size: 7.5pt !important;
         font-weight: 700 !important;
         color: #0f172a !important;
     }
 
     .lang-level {
-        font-size: 7.5pt !important;
+        font-size: 6.5pt !important;
         color: #64748b !important;
         float: right !important;
     }
 
     .lang-bar-outer {
-        height: 4pt !important;
+        height: 3pt !important;
         background: #e2e8f0 !important;
         border-radius: 100px !important;
-        margin-top: 3pt !important;
+        margin-top: 1.5pt !important;
         overflow: hidden !important;
         clear: both !important;
     }
@@ -2303,9 +2321,9 @@ body.switching .main-column {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        gap: 5pt !important;
-        margin-top: 15pt !important;
-        padding-top: 10pt !important;
+        gap: 3pt !important;
+        margin-top: 8pt !important;
+        padding-top: 6pt !important;
         border-top: 1px solid #e2e8f0 !important;
         text-align: center !important;
         page-break-inside: avoid !important;
@@ -2313,24 +2331,24 @@ body.switching .main-column {
     }
 
     .print-qrcode {
-        width: 80pt !important;
-        height: 80pt !important;
+        width: 50pt !important;
+        height: 50pt !important;
         border: 1px solid #cbd5e1 !important;
         border-radius: 4px !important;
-        padding: 3pt !important;
+        padding: 2pt !important;
         background: #ffffff !important;
     }
 
     .qrcode-text strong {
         display: block !important;
-        font-size: 8pt !important;
+        font-size: 7.5pt !important;
         color: #0f172a !important;
         font-weight: 700 !important;
     }
 
     .qrcode-text span {
         display: block !important;
-        font-size: 6.5pt !important;
+        font-size: 6pt !important;
         color: #64748b !important;
         margin-top: 1pt !important;
     }
@@ -2358,7 +2376,7 @@ body.switching .main-column {
         border: none !important;
         border-bottom: 1px solid #e2e8f0 !important;
         border-radius: 0 !important;
-        padding: 10pt 0 !important;
+        padding: 5pt 0 !important;
         margin: 0 !important;
         box-shadow: none !important;
         backdrop-filter: none !important;
@@ -2377,23 +2395,23 @@ body.switching .main-column {
     /* Título de seção na área principal — barra colorida */
     .main-column .section-title {
         font-family: 'Outfit', 'Inter', Arial, sans-serif !important;
-        font-size: 11pt !important;
+        font-size: 9.5pt !important;
         font-weight: 800 !important;
         letter-spacing: 0.3px !important;
         text-transform: uppercase !important;
         color: #0f172a !important;
-        border-bottom: 2pt solid var(--accent) !important;
-        padding-bottom: 4pt !important;
-        margin-bottom: 8pt !important;
+        border-bottom: 1.5pt solid var(--accent) !important;
+        padding-bottom: 2pt !important;
+        margin-bottom: 4pt !important;
         display: flex !important;
         align-items: center !important;
-        gap: 5pt !important;
+        gap: 3pt !important;
     }
 
     .main-column .section-title i {
         display: inline !important;
-        width: 12pt !important;
-        height: 12pt !important;
+        width: 10pt !important;
+        height: 10pt !important;
         color: var(--accent) !important;
         background: none !important;
         border-radius: 0 !important;
@@ -2405,9 +2423,9 @@ body.switching .main-column {
         display: block !important;
         order: -1 !important;
         background: #ffffff !important;
-        border-bottom: 2px solid #e2e8f0 !important;
-        padding: 0 0 10pt 0 !important;
-        margin-bottom: 5pt !important;
+        border-bottom: 1.5px solid #e2e8f0 !important;
+        padding: 0 0 6pt 0 !important;
+        margin-bottom: 6pt !important;
     }
 
     .print-only-marketing-education.active {
@@ -2417,12 +2435,12 @@ body.switching .main-column {
     /* Nome grande */
     .main-header-print .profile-name {
         font-family: 'Outfit', 'Inter', Arial, sans-serif !important;
-        font-size: 28pt !important;
+        font-size: 22pt !important;
         font-weight: 900 !important;
         letter-spacing: -1px !important;
         line-height: 1.0 !important;
         color: #0f172a !important;
-        margin-bottom: 4pt !important;
+        margin-bottom: 2pt !important;
     }
 
     .main-header-print .profile-name-accent {
@@ -2431,7 +2449,7 @@ body.switching .main-column {
 
     .main-header-print .profile-titles {
         min-height: auto !important;
-        margin-bottom: 6pt !important;
+        margin-bottom: 4pt !important;
     }
 
     .main-header-print .title-container {
@@ -2444,23 +2462,23 @@ body.switching .main-column {
 
     .main-header-print .title-container .badge {
         display: inline-block !important;
-        font-size: 7pt !important;
+        font-size: 6.5pt !important;
         font-weight: 700 !important;
         background: var(--accent-subtle) !important;
         border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
         color: var(--accent-dark) !important;
-        padding: 1.5pt 6pt !important;
-        margin-right: 3pt !important;
+        padding: 1pt 5pt !important;
+        margin-right: 2pt !important;
         border-radius: 100px !important;
     }
 
     .main-header-print .tagline {
-        font-size: 9.5pt !important;
+        font-size: 8.5pt !important;
         font-weight: 500 !important;
         color: #475569 !important;
         border-left: 3px solid var(--accent) !important;
-        padding-left: 6pt !important;
-        margin-top: 5pt !important;
+        padding-left: 5pt !important;
+        margin-top: 3pt !important;
     }
 
     /* Linha de contato rápida no print */
@@ -2468,25 +2486,25 @@ body.switching .main-column {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: wrap !important;
-        gap: 12pt !important;
-        margin-top: 8pt !important;
-        padding-top: 6pt !important;
+        gap: 10pt !important;
+        margin-top: 5pt !important;
+        padding-top: 4pt !important;
         border-top: 1px solid #f1f5f9 !important;
     }
 
     .main-header-print .info-item {
         display: flex !important;
         align-items: center !important;
-        gap: 4pt !important;
-        font-size: 8.5pt !important;
+        gap: 3pt !important;
+        font-size: 8pt !important;
         color: #475569 !important;
         font-weight: 500 !important;
     }
 
     .main-header-print .info-item i {
         display: inline !important;
-        width: 10pt !important;
-        height: 10pt !important;
+        width: 8.5pt !important;
+        height: 8.5pt !important;
         color: var(--accent) !important;
     }
 
@@ -2502,10 +2520,10 @@ body.switching .main-column {
     }
 
     .summary-content p {
-        font-size: 9pt !important;
+        font-size: 8pt !important;
         color: #334155 !important;
-        line-height: 1.55 !important;
-        margin-bottom: 6pt !important;
+        line-height: 1.35 !important;
+        margin-bottom: 3pt !important;
     }
 
     /* ================================================================
@@ -2518,12 +2536,12 @@ body.switching .main-column {
     .skills-grid.active {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        gap: 8pt 15pt !important;
+        gap: 4pt 12pt !important;
         background: #f8f9fa !important;
         border: 1px solid #e2e8f0 !important;
         border-radius: 6px !important;
-        padding: 10pt 12pt !important;
-        margin-top: 4pt !important;
+        padding: 5pt 8pt !important;
+        margin-top: 2pt !important;
     }
 
     .skill-card {
@@ -2537,14 +2555,14 @@ body.switching .main-column {
     .skill-card-icon { display: none !important; }
 
     .skill-card h3 {
-        font-size: 8.5pt !important;
+        font-size: 8pt !important;
         font-weight: 700 !important;
         color: var(--accent) !important;
         text-transform: uppercase !important;
         letter-spacing: 0.5px !important;
-        margin-bottom: 4pt !important;
+        margin-bottom: 2pt !important;
         border-bottom: 1px dashed #cbd5e1 !important;
-        padding-bottom: 2pt !important;
+        padding-bottom: 1pt !important;
     }
 
     .skill-card ul {
@@ -2554,18 +2572,18 @@ body.switching .main-column {
     }
 
     .skill-card li {
-        font-size: 8.5pt !important;
+        font-size: 7.5pt !important;
         color: #334155 !important;
-        padding-left: 10pt !important;
+        padding-left: 8pt !important;
         position: relative !important;
-        line-height: 1.5 !important;
+        line-height: 1.3 !important;
     }
 
     .skill-card li::before {
         content: '✓' !important;
         color: var(--accent) !important;
         font-weight: 700 !important;
-        font-size: 8pt !important;
+        font-size: 7.5pt !important;
         position: absolute !important;
         left: 0 !important;
         top: 0 !important;
@@ -2575,11 +2593,11 @@ body.switching .main-column {
     body[data-theme="marketing"] .skills-grid.active {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        gap: 8pt 15pt !important;
+        gap: 4pt 12pt !important;
         background: #f8f9fa !important;
         border: 1px solid #e2e8f0 !important;
         border-radius: 6px !important;
-        padding: 10pt 12pt !important;
+        padding: 5pt 8pt !important;
     }
 
     body[data-theme="marketing"] .skill-card li::before {
@@ -2605,8 +2623,8 @@ body.switching .main-column {
     }
 
     .timeline-item {
-        margin-bottom: 8pt !important;
-        padding-bottom: 8pt !important;
+        margin-bottom: 4pt !important;
+        padding-bottom: 4pt !important;
         border-bottom: 1px dashed #e2e8f0 !important;
         position: relative !important;
         padding-left: 0 !important;
@@ -2623,14 +2641,14 @@ body.switching .main-column {
     .timeline-dot { display: none !important; }
 
     .timeline-content h3 {
-        font-size: 9.5pt !important;
+        font-size: 8.5pt !important;
         font-weight: 700 !important;
         color: var(--accent) !important;
         display: inline !important;
     }
 
     .timeline-company {
-        font-size: 9pt !important;
+        font-size: 8pt !important;
         color: #334155 !important;
         font-weight: 600 !important;
         display: inline !important;
@@ -2642,7 +2660,7 @@ body.switching .main-column {
     }
 
     .timeline-date {
-        font-size: 8.5pt !important;
+        font-size: 7.5pt !important;
         color: #64748b !important;
         font-weight: 700 !important;
         float: right !important;
@@ -2657,26 +2675,26 @@ body.switching .main-column {
     .timeline-content ul {
         list-style: none !important;
         padding: 0 !important;
-        margin: 4pt 0 0 0 !important;
+        margin: 2pt 0 0 0 !important;
         display: flex !important;
         flex-direction: column !important;
-        gap: 3pt !important;
+        gap: 1.5pt !important;
     }
 
     .timeline-content li {
-        font-size: 8.5pt !important;
+        font-size: 7.5pt !important;
         color: #334155 !important;
-        padding-left: 10pt !important;
+        padding-left: 7pt !important;
         position: relative !important;
-        line-height: 1.45 !important;
+        line-height: 1.3 !important;
     }
 
     .timeline-content li::before {
         content: '•' !important;
         position: absolute !important;
-        left: 2pt !important;
+        left: 1pt !important;
         color: var(--accent) !important;
-        font-size: 9pt !important;
+        font-size: 8pt !important;
         top: -1pt !important;
     }
 
@@ -2693,16 +2711,16 @@ body.switching .main-column {
     }
 
     .projects-grid.active {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 8pt !important;
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 6pt !important;
     }
 
     .project-card {
         background: #ffffff !important;
         border: 1px solid #e2e8f0 !important;
         border-radius: 6px !important;
-        padding: 8pt 10pt !important;
+        padding: 5pt 6pt !important;
         display: block !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
@@ -2715,43 +2733,43 @@ body.switching .main-column {
         flex-direction: row !important;
         justify-content: space-between !important;
         align-items: center !important;
-        margin-bottom: 3pt !important;
+        margin-bottom: 2pt !important;
         border-bottom: 0.5pt solid #f1f5f9 !important;
-        padding-bottom: 2pt !important;
+        padding-bottom: 1pt !important;
     }
 
     .project-title {
-        font-size: 9pt !important;
+        font-size: 8pt !important;
         font-weight: 700 !important;
         color: #0f172a !important;
     }
 
     .project-tag {
-        font-size: 6.5pt !important;
+        font-size: 6pt !important;
         font-weight: 700 !important;
         color: var(--accent) !important;
         text-transform: uppercase !important;
     }
 
     .project-desc {
-        font-size: 8.5pt !important;
+        font-size: 7pt !important;
         color: #334155 !important;
-        line-height: 1.4 !important;
-        margin-bottom: 5pt !important;
+        line-height: 1.25 !important;
+        margin-bottom: 2pt !important;
     }
 
     .project-techs {
         display: flex !important;
         flex-wrap: wrap !important;
-        gap: 3pt !important;
+        gap: 2pt !important;
     }
 
     .project-techs .tech-tag {
-        font-size: 7pt !important;
+        font-size: 6.2pt !important;
         background: #f1f5f9 !important;
         border: 1px solid #cbd5e1 !important;
         color: #475569 !important;
-        padding: 1pt 4pt !important;
+        padding: 0.5pt 2.5pt !important;
         border-radius: 3px !important;
     }
 
@@ -2769,71 +2787,71 @@ body.switching .main-column {
     .differences-grid {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        gap: 6pt !important;
-        margin-bottom: 8pt !important;
+        gap: 4pt !important;
+        margin-bottom: 4pt !important;
     }
 
     .diff-card {
         background: #f8f9fa !important;
         border: 1px solid #e2e8f0 !important;
         border-radius: 4px !important;
-        padding: 6pt !important;
+        padding: 4pt !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
     }
 
     .diff-card h4 {
-        font-size: 8pt !important;
+        font-size: 7.5pt !important;
         font-weight: 800 !important;
         text-transform: uppercase !important;
         color: var(--accent) !important;
-        margin-bottom: 2pt !important;
+        margin-bottom: 1.5pt !important;
         letter-spacing: 0.3px !important;
-        line-height: 1.3 !important;
+        line-height: 1.2 !important;
     }
 
     .diff-card p {
-        font-size: 7.5pt !important;
+        font-size: 7pt !important;
         color: #475569 !important;
-        line-height: 1.45 !important;
+        line-height: 1.35 !important;
     }
 
     /* ---- FERRAMENTAS — Tech (por categoria com labels) ---- */
     .subsection-title {
-        font-size: 8.5pt !important;
+        font-size: 8pt !important;
         font-weight: 800 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.8px !important;
         color: #334155 !important;
-        margin: 8pt 0 4pt !important;
+        margin: 5pt 0 3pt !important;
         border-bottom: 1px dashed #cbd5e1 !important;
-        padding-bottom: 2pt !important;
+        padding-bottom: 1.5pt !important;
     }
 
     .tools-category-grid {
         display: flex !important;
         flex-direction: column !important;
-        gap: 4pt !important;
+        gap: 3pt !important;
     }
 
     .tools-group {
         display: flex !important;
         align-items: center !important;
-        gap: 6pt !important;
+        gap: 4pt !important;
         background: #f8f9fa !important;
         border: 1px solid #e2e8f0 !important;
         border-radius: 4px !important;
-        padding: 4pt 6pt !important;
+        padding: 2pt 4pt !important;
     }
 
     .tools-group-label {
-        font-size: 7.5pt !important;
+        font-size: 6.8pt !important;
         font-weight: 800 !important;
         text-transform: uppercase !important;
         color: var(--accent) !important;
         letter-spacing: 0.3px !important;
         white-space: nowrap !important;
-        min-width: 60pt !important;
+        min-width: 50pt !important;
         display: flex !important;
         align-items: center !important;
         gap: 3pt !important;
@@ -2848,12 +2866,12 @@ body.switching .main-column {
     }
 
     .tool-tag {
-        font-size: 7.5pt !important;
+        font-size: 7pt !important;
         color: #334155 !important;
         background: #ffffff !important;
         border: 1px solid #cbd5e1 !important;
         border-radius: 3px !important;
-        padding: 1pt 5pt !important;
+        padding: 0.5pt 3pt !important;
         font-weight: 600 !important;
     }
 
@@ -2863,8 +2881,8 @@ body.switching .main-column {
     .tools-platform-grid {
         display: grid !important;
         grid-template-columns: repeat(4, 1fr) !important;
-        gap: 5pt !important;
-        margin-top: 5pt !important;
+        gap: 3.5pt !important;
+        margin-top: 3.5pt !important;
     }
 
     .platform-card {
@@ -2874,16 +2892,16 @@ body.switching .main-column {
         background: #f8f9fa !important;
         border: 1px solid #e2e8f0 !important;
         border-radius: 4px !important;
-        padding: 5pt !important;
-        gap: 6pt !important;
+        padding: 3pt !important;
+        gap: 4pt !important;
         transform: none !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
     }
 
     .platform-icon {
-        width: 14pt !important;
-        height: 14pt !important;
+        width: 11pt !important;
+        height: 11pt !important;
         border-radius: 3px !important;
         color: #fff !important;
         display: flex !important;
@@ -2893,8 +2911,8 @@ body.switching .main-column {
     }
 
     .platform-icon i {
-        width: 8pt !important;
-        height: 8pt !important;
+        width: 6.5pt !important;
+        height: 6.5pt !important;
     }
 
     .platform-info {
@@ -2906,7 +2924,7 @@ body.switching .main-column {
     }
 
     .platform-info strong {
-        font-size: 7.5pt !important;
+        font-size: 7pt !important;
         font-weight: 700 !important;
         color: #0f172a !important;
         line-height: 1.2 !important;
@@ -2914,7 +2932,7 @@ body.switching .main-column {
     }
 
     .platform-info span {
-        font-size: 6.5pt !important;
+        font-size: 6pt !important;
         color: #475569 !important;
         line-height: 1.2 !important;
         display: block;
@@ -2928,15 +2946,15 @@ body.switching .main-column {
     .print-education-table {
         display: flex !important;
         flex-direction: column !important;
-        gap: 5pt !important;
-        margin-top: 6pt !important;
+        gap: 3pt !important;
+        margin-top: 4pt !important;
     }
 
     .print-edu-row {
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
-        padding: 4pt 0 !important;
+        padding: 2pt 0 !important;
         border-bottom: 1px solid #f1f5f9 !important;
     }
 
@@ -2945,37 +2963,37 @@ body.switching .main-column {
     }
 
     .print-edu-desc {
-        font-size: 8.5pt !important;
+        font-size: 7.5pt !important;
         font-weight: 500 !important;
         color: #1e293b !important;
         flex: 1 !important;
     }
 
     .print-edu-date {
-        font-size: 8.5pt !important;
+        font-size: 7.5pt !important;
         font-weight: 700 !important;
         color: #475569 !important;
         margin-left: 10pt !important;
-        min-width: 45pt !important;
+        min-width: 35pt !important;
         text-align: right !important;
     }
 
     .print-edu-status {
         margin-left: 10pt !important;
-        min-width: 70pt !important;
+        min-width: 50pt !important;
         text-align: right !important;
     }
 
     .badge-status-print {
         display: inline-block !important;
-        font-size: 7pt !important;
+        font-size: 6pt !important;
         font-weight: 800 !important;
         text-transform: uppercase !important;
         color: #1e3a8a !important;
         background: #dbeafe !important;
         border: 1px solid #bfdbfe !important;
         border-radius: 4px !important;
-        padding: 1.5pt 5pt !important;
+        padding: 1pt 4pt !important;
     }
 
     /* ================================================================
@@ -2985,12 +3003,12 @@ body.switching .main-column {
         background: #f8f9fa !important;
         border: none !important;
         border-radius: 4px !important;
-        padding: 8pt 10pt !important;
-        margin-top: 10pt !important;
+        padding: 4pt 6pt !important;
+        margin-top: 5pt !important;
         text-align: left !important;
         display: flex !important;
         align-items: flex-start !important;
-        gap: 8pt !important;
+        gap: 6pt !important;
         border-left: 3px solid var(--accent) !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
@@ -2998,8 +3016,8 @@ body.switching .main-column {
 
     .quote-icon {
         display: inline !important;
-        width: 12pt !important;
-        height: 12pt !important;
+        width: 10pt !important;
+        height: 10pt !important;
         color: var(--accent) !important;
         opacity: 0.5 !important;
         flex-shrink: 0 !important;
@@ -3007,10 +3025,10 @@ body.switching .main-column {
     }
 
     .quote-text {
-        font-size: 8.5pt !important;
+        font-size: 7.5pt !important;
         color: #334155 !important;
         font-style: italic !important;
-        line-height: 1.45 !important;
+        line-height: 1.35 !important;
         -webkit-text-fill-color: #334155 !important;
         margin: 0 !important;
     }
