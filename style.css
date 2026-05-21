@@ -300,9 +300,9 @@ body {
    CONTAINER PRINCIPAL
    ================================================================ */
 .app-container {
-    max-width: 1100px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 2.5rem 1.5rem;
+    padding: 2.5rem 2rem;
 }
 
 /* ================================================================
@@ -351,8 +351,8 @@ body {
    ================================================================ */
 .profile-photo-wrapper {
     position: relative;
-    width: 160px;
-    height: 160px;
+    width: 175px;
+    height: 175px;
     border-radius: 50%;
     padding: 4px;
     background: linear-gradient(135deg, var(--accent), var(--accent-light));
@@ -400,12 +400,13 @@ body {
 
 .profile-name {
     font-family: var(--font-heading);
-    font-size: clamp(1.9rem, 3.8vw, 3rem);
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
     font-weight: 800;
-    letter-spacing: -1.5px;
+    letter-spacing: -2px;
     line-height: 1.05;
     color: var(--text-primary);
     transition: var(--transition);
+    white-space: nowrap;
 }
 
 .profile-name-accent {
@@ -565,8 +566,8 @@ body[data-theme="marketing"] .switcher-bg {
    ================================================================ */
 .main-content {
     display: grid;
-    grid-template-columns: 285px 1fr;
-    gap: 1.75rem;
+    grid-template-columns: 340px 1fr;
+    gap: 2rem;
     position: relative;
     align-items: start;
 }
@@ -1636,6 +1637,7 @@ body.switching .main-column {
     .profile-name {
         font-size: clamp(1.8rem, 7.5vw, 2.4rem);
         letter-spacing: -1px;
+        white-space: normal;
     }
 }
 
