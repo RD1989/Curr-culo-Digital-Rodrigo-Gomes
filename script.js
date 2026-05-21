@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1b. Inicializar imagem de QR Code para a impressão
     const qrImg = document.getElementById("print-qrcode-img");
     if (qrImg) {
-        qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://www.rodrigowabdesigner.com.br";
+        qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://curriculo-rodrigo.vercel.app/";
     }
 
     // 2. Elementos DOM do Switcher, Temas e Onboarding

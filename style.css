@@ -1889,27 +1889,24 @@ body.switching .main-column {
     color: var(--text-secondary);
 }
 
-/* QR Code escondido por padrão na tela */
+
+/* QR Code escondido por padrao na tela */
 .print-only-qrcode {
     display: none;
 }
 
 /* ================================================================
-   IMPRESSÃO / PDF — A4 PREMIUM
-   Fiel aos modelos de referência: sidebar escura + área principal
+   IMPRESSAO / PDF - A4 UMA UNICA PAGINA
+   Layout: sidebar (52mm) + coluna principal
    ================================================================ */
 @media print {
 
-    /* ---- Definição de página A4 ---- */
     @page {
         size: A4 portrait;
-        margin: 5mm 8mm 5mm 8mm;
+        margin: 6mm 8mm 6mm 8mm;
     }
 
-    /* ---- Reset global de impressão ---- */
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
         box-shadow: none !important;
         text-shadow: none !important;
         animation: none !important;
@@ -1924,85 +1921,72 @@ body.switching .main-column {
         min-height: 0 !important;
         margin: 0 !important;
         padding: 0 !important;
-        background: #ffffff !important;
+        background: #fff !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
         font-family: 'Inter', Arial, sans-serif !important;
-        font-size: 8pt !important;
+        font-size: 7.5pt !important;
         color: #1e293b !important;
-        line-height: 1.4 !important;
-        max-height: 100%;
+        line-height: 1.3 !important;
         overflow: hidden !important;
     }
 
-    /* ---- Ocultar elementos não imprimíveis ---- */
     .bg-glow,
+    .loading-bar,
+    .onboarding-banner,
     .switcher-wrapper,
     .site-footer,
     .print-btn,
     .header-accent-bar,
-    .photo-ring {
+    .photo-ring,
+    .main-header,
+    .portfolio-section,
+    .print-only-marketing-education,
+    .cv-footer-quote {
         display: none !important;
     }
 
-    /* ================================================================
-       CONTAINER RAIZ — duas colunas diretas
-       ================================================================ */
     .app-container {
         display: block !important;
         width: 100% !important;
         max-width: 100% !important;
         padding: 0 !important;
         margin: 0 !important;
-        background: #ffffff !important;
+        background: #fff !important;
     }
 
-    /* Remove o header fora do grid — vira parte da área principal */
-    .main-header {
-        display: none !important;
-    }
-
-    /* ================================================================
-       GRID PRINCIPAL
-       ================================================================ */
     .main-content {
         display: flex !important;
         flex-direction: row !important;
         width: 100% !important;
-        gap: 6mm !important;
+        gap: 5mm !important;
         align-items: stretch !important;
     }
 
-    /* ================================================================
-       SIDEBAR — OTIMIZADA COM FUNDO CLARO (ATS & TINTA)
-       ================================================================ */
     .sidebar {
         display: flex !important;
         flex-direction: column !important;
-        width: 63mm !important;
-        min-width: 63mm !important;
-        max-width: 63mm !important;
-        background: #ffffff !important;
-        border-right: 1px solid #e2e8f0 !important;
-        padding: 0 8px 0 0 !important;
-        gap: 6pt !important;
-        position: relative !important;
+        width: 52mm !important;
+        min-width: 52mm !important;
+        max-width: 52mm !important;
+        background: #fff !important;
+        border-right: 1px solid #cbd5e1 !important;
+        padding: 0 6pt 0 0 !important;
+        gap: 5pt !important;
     }
 
-    /* Bloco de foto no topo da sidebar */
     .print-only-photo {
         display: block !important;
-        margin-bottom: 4pt !important;
         text-align: center !important;
+        margin-bottom: 3pt !important;
     }
 
     .profile-photo-wrapper {
-        width: 34mm !important;
-        height: 34mm !important;
+        width: 28mm !important;
+        height: 28mm !important;
         border-radius: 50% !important;
         padding: 2px !important;
         background: var(--accent) !important;
-        box-shadow: none !important;
         overflow: hidden !important;
         margin: 0 auto !important;
         display: block !important;
@@ -2016,7 +2000,6 @@ body.switching .main-column {
         border: 2px solid #fff !important;
     }
 
-    /* Cards da sidebar — transparentes e legíveis */
     .sidebar .section-card {
         background: transparent !important;
         border: none !important;
@@ -2024,84 +2007,66 @@ body.switching .main-column {
         box-shadow: none !important;
         padding: 0 !important;
         margin: 0 !important;
-        color: #1e293b !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
     }
 
+    .sidebar .section-card:has(.profile-text),
+    .sidebar .section-card:has(.certifications-list),
+    .section-card:has(.extra-container) {
+        display: none !important;
+    }
+
     .sidebar .section-title {
-        font-family: 'Outfit', 'Inter', Arial, sans-serif !important;
-        font-size: 9pt !important;
+        font-family: 'Outfit', Arial, sans-serif !important;
+        font-size: 7.5pt !important;
         font-weight: 800 !important;
-        letter-spacing: 0.5px !important;
         text-transform: uppercase !important;
+        letter-spacing: 0.4px !important;
         color: var(--accent) !important;
         border-bottom: 1.5pt solid var(--accent) !important;
         padding-bottom: 2pt !important;
-        margin-bottom: 5pt !important;
+        margin-bottom: 4pt !important;
         display: flex !important;
         align-items: center !important;
-        gap: 4pt !important;
+        gap: 3pt !important;
     }
 
     .sidebar .section-title i {
         display: inline !important;
-        width: 10pt !important;
-        height: 10pt !important;
-        color: var(--accent) !important;
+        width: 8pt !important;
+        height: 8pt !important;
     }
 
-    /* ---- PERFIL PROFISSIONAL na sidebar ---- */
-    .profile-text {
-        display: none !important;
-    }
-
-    .profile-text.active {
-        display: block !important;
-    }
-
-    .profile-text p {
-        font-size: 7.5pt !important;
-        color: #334155 !important;
-        line-height: 1.3 !important;
-        margin-bottom: 3pt !important;
-    }
-
-    /* ---- CONTATO na sidebar ---- */
     .contact-list {
         display: flex !important;
         flex-direction: column !important;
-        gap: 4pt !important;
+        gap: 3pt !important;
     }
 
     .contact-link {
         display: flex !important;
         align-items: center !important;
-        gap: 5pt !important;
-        background: #f8f9fa !important;
-        border: 1px solid #e2e8f0 !important;
-        padding: 3pt 4pt !important;
-        border-radius: 4px !important;
+        gap: 4pt !important;
         text-decoration: none !important;
-        transform: none !important;
         color: #1e293b !important;
     }
 
     .contact-icon {
         display: flex !important;
-        width: 13pt !important;
-        height: 13pt !important;
+        width: 11pt !important;
+        height: 11pt !important;
         border-radius: 3px !important;
         align-items: center !important;
         justify-content: center !important;
         flex-shrink: 0 !important;
-        color: #ffffff !important;
+        color: #fff !important;
     }
 
     .contact-icon i {
-        width: 7.5pt !important;
-        height: 7.5pt !important;
-        color: #ffffff !important;
+        width: 6.5pt !important;
+        height: 6.5pt !important;
+        color: #fff !important;
     }
 
     .whatsapp-bg { background: #16a34a !important; }
@@ -2110,36 +2075,33 @@ body.switching .main-column {
 
     .contact-label {
         display: block !important;
-        font-size: 5.5pt !important;
+        font-size: 5pt !important;
         text-transform: uppercase !important;
         color: #64748b !important;
         font-weight: 700 !important;
-        letter-spacing: 0.5px !important;
+        letter-spacing: 0.4px !important;
     }
 
     .contact-val {
-        font-size: 7.5pt !important;
+        font-size: 7pt !important;
         color: #0f172a !important;
         font-weight: 600 !important;
         word-break: break-all !important;
         line-height: 1.1 !important;
     }
 
-    /* ---- FORMAÇÃO na sidebar (só ativa no perfil de Tech) ---- */
-    .education-container {
+    .education-container { display: none !important; }
+    .education-container.active { display: block !important; }
+
+    body[data-theme="marketing"] .sidebar-education-section {
         display: none !important;
     }
 
-    .education-container.active {
-        display: block !important;
-    }
-
     .edu-main-item {
-        display: block !important;
-        background: #f8f9fa !important;
+        background: #f8fafc !important;
         border: 1px solid #e2e8f0 !important;
         border-radius: 4px !important;
-        padding: 3pt 5pt !important;
+        padding: 3pt 4pt !important;
         margin-bottom: 3pt !important;
     }
 
@@ -2147,65 +2109,60 @@ body.switching .main-column {
 
     .edu-main-badge {
         display: inline-block !important;
-        font-size: 5.5pt !important;
+        font-size: 5pt !important;
         font-weight: 800 !important;
         text-transform: uppercase !important;
-        letter-spacing: 0.5px !important;
         color: var(--accent) !important;
-        background: var(--accent-subtle) !important;
-        border: 1px solid rgba(var(--accent-rgb), 0.20) !important;
         border-radius: 100px !important;
         padding: 0.5pt 3pt !important;
         margin-bottom: 1pt !important;
     }
 
     .edu-main-info h3 {
-        font-size: 8pt !important;
+        font-size: 7.5pt !important;
         font-weight: 700 !important;
         color: #0f172a !important;
         margin: 1pt 0 !important;
     }
 
     .edu-main-info p {
-        font-size: 7pt !important;
+        font-size: 6.5pt !important;
         color: #475569 !important;
         margin-bottom: 1pt !important;
     }
 
     .tag-status {
         display: inline-block !important;
-        font-size: 5.5pt !important;
+        font-size: 5pt !important;
         font-weight: 700 !important;
         text-transform: uppercase !important;
         color: #d97706 !important;
-        background: rgba(217, 119, 6, 0.1) !important;
-        border: 1px solid rgba(217, 119, 6, 0.2) !important;
+        background: rgba(217,119,6,0.1) !important;
+        border: 1px solid rgba(217,119,6,0.2) !important;
         border-radius: 3px !important;
-        padding: 0.5pt 2.5pt !important;
+        padding: 0.5pt 2pt !important;
     }
 
-    /* Categorias de cursos */
     .edu-categories {
         display: flex !important;
         flex-direction: column !important;
-        gap: 3pt !important;
+        gap: 2pt !important;
     }
 
     .edu-category {
         border-left: 1.5pt solid var(--accent) !important;
-        padding-left: 4pt !important;
+        padding-left: 3pt !important;
     }
 
     .edu-category-title {
-        font-size: 6.5pt !important;
+        font-size: 6pt !important;
         font-weight: 800 !important;
         text-transform: uppercase !important;
-        letter-spacing: 0.5px !important;
         color: #475569 !important;
         margin-bottom: 1pt !important;
         display: flex !important;
         align-items: center !important;
-        gap: 3pt !important;
+        gap: 2pt !important;
     }
 
     .edu-category-title i { display: none !important; }
@@ -2213,90 +2170,47 @@ body.switching .main-column {
     .edu-pills {
         display: flex !important;
         flex-direction: column !important;
-        gap: 1.5pt !important;
+        gap: 1pt !important;
     }
 
     .edu-pill {
-        font-size: 6.8pt !important;
+        font-size: 6.2pt !important;
         color: #334155 !important;
         background: none !important;
         border: none !important;
-        border-radius: 0 !important;
         padding: 0 !important;
         display: flex !important;
         align-items: flex-start !important;
-        gap: 3pt !important;
-        line-height: 1.25 !important;
+        gap: 2pt !important;
+        line-height: 1.2 !important;
     }
 
     .edu-pill::before {
-        content: '•' !important;
+        content: 'o' !important;
         color: var(--accent) !important;
-        font-size: 8pt !important;
+        font-size: 7pt !important;
         flex-shrink: 0 !important;
         margin-top: -1pt !important;
     }
 
     .edu-pill i { display: none !important; }
 
-    /* ---- CERTIFICAÇÕES na sidebar ---- */
-    .certifications-list {
-        list-style: none !important;
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 2pt !important;
-    }
-
-    .certifications-list li {
-        display: flex !important;
-        align-items: flex-start !important;
-        gap: 4pt !important;
-        color: #334155 !important;
-        line-height: 1.2 !important;
-    }
-
-    .certifications-list li i { display: none !important; }
-
-    .certifications-list li strong {
-        display: block !important;
-        font-size: 7pt !important;
-        font-weight: 600 !important;
-        color: #0f172a !important;
-    }
-
-    .certifications-list li span {
-        font-size: 6pt !important;
-        color: #64748b !important;
-    }
-
-    .certifications-list li::before {
-        content: '•' !important;
-        color: var(--accent) !important;
-        font-size: 8pt !important;
-        flex-shrink: 0 !important;
-        margin-top: -1pt !important;
-    }
-
-    /* ---- IDIOMAS na sidebar ---- */
     .languages-grid {
         display: flex !important;
         flex-direction: column !important;
-        gap: 4pt !important;
+        gap: 3pt !important;
     }
 
-    .lang-item {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
+    .lang-item { margin: 0 !important; padding: 0 !important; }
 
     .lang-name {
-        font-size: 7.5pt !important;
+        font-size: 7pt !important;
         font-weight: 700 !important;
         color: #0f172a !important;
     }
 
     .lang-level {
-        font-size: 6.5pt !important;
+        font-size: 6pt !important;
         color: #64748b !important;
         float: right !important;
     }
@@ -2316,14 +2230,13 @@ body.switching .main-column {
         border-radius: 100px !important;
     }
 
-    /* ---- QR CODE na sidebar (Impressão) ---- */
     .print-only-qrcode {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         gap: 3pt !important;
-        margin-top: 8pt !important;
-        padding-top: 6pt !important;
+        margin-top: 6pt !important;
+        padding-top: 5pt !important;
         border-top: 1px solid #e2e8f0 !important;
         text-align: center !important;
         page-break-inside: avoid !important;
@@ -2331,74 +2244,59 @@ body.switching .main-column {
     }
 
     .print-qrcode {
-        width: 50pt !important;
-        height: 50pt !important;
+        width: 44pt !important;
+        height: 44pt !important;
         border: 1px solid #cbd5e1 !important;
         border-radius: 4px !important;
-        padding: 2pt !important;
-        background: #ffffff !important;
+        padding: 1.5pt !important;
+        background: #fff !important;
     }
 
     .qrcode-text strong {
         display: block !important;
-        font-size: 7.5pt !important;
+        font-size: 6.5pt !important;
         color: #0f172a !important;
         font-weight: 700 !important;
     }
 
     .qrcode-text span {
         display: block !important;
-        font-size: 6pt !important;
+        font-size: 5.5pt !important;
         color: #64748b !important;
         margin-top: 1pt !important;
     }
 
-    /* Ocultar formação na sidebar no perfil de marketing para impressão */
-    body[data-theme="marketing"] .sidebar-education-section {
-        display: none !important;
-    }
-
-    /* ================================================================
-       ÁREA PRINCIPAL — coluna direita
-       ================================================================ */
     .main-column {
         flex: 1 !important;
         display: flex !important;
         flex-direction: column !important;
         padding: 0 !important;
         gap: 0 !important;
-        background: #ffffff !important;
+        background: #fff !important;
         overflow: hidden !important;
     }
 
     .main-column .section-card {
-        background: #ffffff !important;
+        background: #fff !important;
         border: none !important;
         border-bottom: 1px solid #e2e8f0 !important;
         border-radius: 0 !important;
-        padding: 5pt 0 !important;
+        padding: 4pt 0 !important;
         margin: 0 !important;
         box-shadow: none !important;
-        backdrop-filter: none !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
     }
 
-    .main-column .section-card::before {
-        display: none !important;
-    }
+    .main-column .section-card::before { display: none !important; }
+    .main-column .section-card:last-child { border-bottom: none !important; }
 
-    .main-column .section-card:last-child {
-        border-bottom: none !important;
-    }
-
-    /* Título de seção na área principal — barra colorida */
     .main-column .section-title {
-        font-family: 'Outfit', 'Inter', Arial, sans-serif !important;
-        font-size: 9.5pt !important;
+        font-family: 'Outfit', Arial, sans-serif !important;
+        font-size: 8.5pt !important;
         font-weight: 800 !important;
-        letter-spacing: 0.3px !important;
         text-transform: uppercase !important;
+        letter-spacing: 0.3px !important;
         color: #0f172a !important;
         border-bottom: 1.5pt solid var(--accent) !important;
         padding-bottom: 2pt !important;
@@ -2410,32 +2308,26 @@ body.switching .main-column {
 
     .main-column .section-title i {
         display: inline !important;
-        width: 10pt !important;
-        height: 10pt !important;
+        width: 9pt !important;
+        height: 9pt !important;
         color: var(--accent) !important;
         background: none !important;
         border-radius: 0 !important;
         padding: 0 !important;
     }
 
-    /* ---- CABEÇALHO EXCLUSIVO PARA IMPRESSÃO ---- */
     .main-header-print {
         display: block !important;
         order: -1 !important;
-        background: #ffffff !important;
-        border-bottom: 1.5px solid #e2e8f0 !important;
-        padding: 0 0 6pt 0 !important;
-        margin-bottom: 6pt !important;
+        background: #fff !important;
+        border-bottom: 2px solid var(--accent) !important;
+        padding: 0 0 5pt 0 !important;
+        margin-bottom: 5pt !important;
     }
 
-    .print-only-marketing-education.active {
-        display: block !important;
-    }
-
-    /* Nome grande */
     .main-header-print .profile-name {
-        font-family: 'Outfit', 'Inter', Arial, sans-serif !important;
-        font-size: 22pt !important;
+        font-family: 'Outfit', Arial, sans-serif !important;
+        font-size: 19pt !important;
         font-weight: 900 !important;
         letter-spacing: -1px !important;
         line-height: 1.0 !important;
@@ -2443,104 +2335,92 @@ body.switching .main-column {
         margin-bottom: 2pt !important;
     }
 
-    .main-header-print .profile-name-accent {
-        color: var(--accent) !important;
-    }
+    .main-header-print .profile-name-accent { color: var(--accent) !important; }
 
     .main-header-print .profile-titles {
         min-height: auto !important;
-        margin-bottom: 4pt !important;
+        margin-bottom: 3pt !important;
     }
 
-    .main-header-print .title-container {
-        display: none !important;
-    }
+    .main-header-print .title-container { display: none !important; }
 
     .main-header-print .title-container.active {
-        display: block !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 2pt !important;
+        align-items: center !important;
+        margin-bottom: 2pt !important;
     }
 
     .main-header-print .title-container .badge {
         display: inline-block !important;
-        font-size: 6.5pt !important;
+        font-size: 6pt !important;
         font-weight: 700 !important;
         background: var(--accent-subtle) !important;
         border: 1px solid rgba(var(--accent-rgb), 0.15) !important;
         color: var(--accent-dark) !important;
-        padding: 1pt 5pt !important;
-        margin-right: 2pt !important;
+        padding: 0.5pt 4pt !important;
         border-radius: 100px !important;
     }
 
     .main-header-print .tagline {
-        font-size: 8.5pt !important;
+        font-size: 7.5pt !important;
         font-weight: 500 !important;
         color: #475569 !important;
         border-left: 3px solid var(--accent) !important;
         padding-left: 5pt !important;
-        margin-top: 3pt !important;
+        margin-top: 2pt !important;
+        line-height: 1.3 !important;
     }
 
-    /* Linha de contato rápida no print */
     .main-header-print .quick-info {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: wrap !important;
-        gap: 10pt !important;
-        margin-top: 5pt !important;
-        padding-top: 4pt !important;
+        gap: 8pt !important;
+        margin-top: 4pt !important;
+        padding-top: 3pt !important;
         border-top: 1px solid #f1f5f9 !important;
     }
 
     .main-header-print .info-item {
         display: flex !important;
         align-items: center !important;
-        gap: 3pt !important;
-        font-size: 8pt !important;
+        gap: 2pt !important;
+        font-size: 7.5pt !important;
         color: #475569 !important;
         font-weight: 500 !important;
     }
 
     .main-header-print .info-item i {
         display: inline !important;
-        width: 8.5pt !important;
-        height: 8.5pt !important;
+        width: 7.5pt !important;
+        height: 7.5pt !important;
         color: var(--accent) !important;
     }
 
-    /* ================================================================
-       RESUMO PROFISSIONAL
-       ================================================================ */
-    .summary-content {
-        display: none !important;
-    }
-
-    .summary-content.active {
-        display: block !important;
-    }
+    .summary-content { display: none !important; }
+    .summary-content.active { display: block !important; }
 
     .summary-content p {
-        font-size: 8pt !important;
+        font-size: 7.5pt !important;
         color: #334155 !important;
         line-height: 1.35 !important;
-        margin-bottom: 3pt !important;
+        margin-bottom: 0 !important;
     }
 
-    /* ================================================================
-       COMPETÊNCIAS — Impressão
-       ================================================================ */
-    .skills-grid {
-        display: none !important;
-    }
+    .summary-content p + p { display: none !important; }
+
+    .skills-grid { display: none !important; }
 
     .skills-grid.active {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        gap: 4pt 12pt !important;
-        background: #f8f9fa !important;
+        gap: 3pt 10pt !important;
+        background: #f8fafc !important;
         border: 1px solid #e2e8f0 !important;
-        border-radius: 6px !important;
-        padding: 5pt 8pt !important;
+        border-radius: 5px !important;
+        padding: 4pt 6pt !important;
         margin-top: 2pt !important;
     }
 
@@ -2555,12 +2435,12 @@ body.switching .main-column {
     .skill-card-icon { display: none !important; }
 
     .skill-card h3 {
-        font-size: 8pt !important;
-        font-weight: 700 !important;
+        font-size: 7pt !important;
+        font-weight: 800 !important;
         color: var(--accent) !important;
         text-transform: uppercase !important;
-        letter-spacing: 0.5px !important;
-        margin-bottom: 2pt !important;
+        letter-spacing: 0.4px !important;
+        margin-bottom: 1.5pt !important;
         border-bottom: 1px dashed #cbd5e1 !important;
         padding-bottom: 1pt !important;
     }
@@ -2572,45 +2452,24 @@ body.switching .main-column {
     }
 
     .skill-card li {
-        font-size: 7.5pt !important;
+        font-size: 7pt !important;
         color: #334155 !important;
-        padding-left: 8pt !important;
+        padding-left: 7pt !important;
         position: relative !important;
-        line-height: 1.3 !important;
+        line-height: 1.25 !important;
     }
 
     .skill-card li::before {
-        content: '✓' !important;
+        content: 'v' !important;
         color: var(--accent) !important;
         font-weight: 700 !important;
-        font-size: 7.5pt !important;
+        font-size: 7pt !important;
         position: absolute !important;
         left: 0 !important;
         top: 0 !important;
     }
 
-    /* Marketing: checklist de competências */
-    body[data-theme="marketing"] .skills-grid.active {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 4pt 12pt !important;
-        background: #f8f9fa !important;
-        border: 1px solid #e2e8f0 !important;
-        border-radius: 6px !important;
-        padding: 5pt 8pt !important;
-    }
-
-    body[data-theme="marketing"] .skill-card li::before {
-        content: '✓' !important;
-        color: var(--accent) !important;
-    }
-
-    /* ================================================================
-       EXPERIÊNCIA — Timeline na impressão
-       ================================================================ */
-    .timeline {
-        display: none !important;
-    }
+    .timeline { display: none !important; }
 
     .timeline.active {
         display: block !important;
@@ -2618,13 +2477,11 @@ body.switching .main-column {
         margin-left: 0 !important;
     }
 
-    .timeline.active::before {
-        display: none !important;
-    }
+    .timeline.active::before { display: none !important; }
 
     .timeline-item {
-        margin-bottom: 4pt !important;
-        padding-bottom: 4pt !important;
+        margin-bottom: 3.5pt !important;
+        padding-bottom: 3.5pt !important;
         border-bottom: 1px dashed #e2e8f0 !important;
         position: relative !important;
         padding-left: 0 !important;
@@ -2640,57 +2497,55 @@ body.switching .main-column {
 
     .timeline-dot { display: none !important; }
 
+    .timeline-date {
+        font-size: 7pt !important;
+        color: #64748b !important;
+        font-weight: 700 !important;
+        float: right !important;
+    }
+
     .timeline-content h3 {
-        font-size: 8.5pt !important;
+        font-size: 8pt !important;
         font-weight: 700 !important;
         color: var(--accent) !important;
         display: inline !important;
     }
 
     .timeline-company {
-        font-size: 8pt !important;
+        font-size: 7.5pt !important;
         color: #334155 !important;
         font-weight: 600 !important;
         display: inline !important;
     }
 
     .timeline-company::before {
-        content: ' — ' !important;
+        content: ' - ' !important;
         color: #94a3b8 !important;
     }
 
-    .timeline-date {
-        font-size: 7.5pt !important;
-        color: #64748b !important;
-        font-weight: 700 !important;
-        float: right !important;
-        margin-top: 0 !important;
-        display: inline-block !important;
-    }
-
-    .timeline-content {
-        clear: both !important;
-    }
+    .timeline-content { clear: both !important; }
 
     .timeline-content ul {
         list-style: none !important;
         padding: 0 !important;
-        margin: 2pt 0 0 0 !important;
+        margin: 1.5pt 0 0 0 !important;
         display: flex !important;
         flex-direction: column !important;
-        gap: 1.5pt !important;
+        gap: 1pt !important;
     }
 
     .timeline-content li {
-        font-size: 7.5pt !important;
+        font-size: 7pt !important;
         color: #334155 !important;
         padding-left: 7pt !important;
         position: relative !important;
-        line-height: 1.3 !important;
+        line-height: 1.25 !important;
     }
 
+    .timeline-content li:nth-child(n+4) { display: none !important; }
+
     .timeline-content li::before {
-        content: '•' !important;
+        content: '-' !important;
         position: absolute !important;
         left: 1pt !important;
         color: var(--accent) !important;
@@ -2698,351 +2553,30 @@ body.switching .main-column {
         top: -1pt !important;
     }
 
-    /* ================================================================
-       PROJETOS EM DESTAQUE (Impressão)
-       ================================================================ */
-    .portfolio-section {
+    .profile-text        { display: none !important; }
+    .profile-text.active { display: block !important; }
+
+    .extra-container        { display: none !important; }
+    .extra-container.active { display: block !important; }
+
+    .projects-grid        { display: none !important; }
+    .projects-grid.active { display: none !important; }
+
+    .main-header-print,
+    .sidebar .section-card,
+    .timeline-item,
+    .skill-card,
+    .main-column .section-card {
         page-break-inside: avoid !important;
         break-inside: avoid !important;
     }
 
-    .projects-grid {
-        display: none !important;
+    .main-content,
+    .sidebar,
+    .main-column {
+        page-break-before: avoid !important;
+        page-break-after: avoid !important;
+        break-before: avoid !important;
+        break-after: avoid !important;
     }
-
-    .projects-grid.active {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 6pt !important;
-    }
-
-    .project-card {
-        background: #ffffff !important;
-        border: 1px solid #e2e8f0 !important;
-        border-radius: 6px !important;
-        padding: 5pt 6pt !important;
-        display: block !important;
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-        box-shadow: none !important;
-        transform: none !important;
-    }
-
-    .project-header {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        margin-bottom: 2pt !important;
-        border-bottom: 0.5pt solid #f1f5f9 !important;
-        padding-bottom: 1pt !important;
-    }
-
-    .project-title {
-        font-size: 8pt !important;
-        font-weight: 700 !important;
-        color: #0f172a !important;
-    }
-
-    .project-tag {
-        font-size: 6pt !important;
-        font-weight: 700 !important;
-        color: var(--accent) !important;
-        text-transform: uppercase !important;
-    }
-
-    .project-desc {
-        font-size: 7pt !important;
-        color: #334155 !important;
-        line-height: 1.25 !important;
-        margin-bottom: 2pt !important;
-    }
-
-    .project-techs {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        gap: 2pt !important;
-    }
-
-    .project-techs .tech-tag {
-        font-size: 6.2pt !important;
-        background: #f1f5f9 !important;
-        border: 1px solid #cbd5e1 !important;
-        color: #475569 !important;
-        padding: 0.5pt 2.5pt !important;
-        border-radius: 3px !important;
-    }
-
-    /* ================================================================
-       DIFERENCIAIS / HABILIDADES MODERNAS (Tech Impressão)
-       ================================================================ */
-    .extra-container {
-        display: none !important;
-    }
-
-    .extra-container.active {
-        display: block !important;
-    }
-
-    .differences-grid {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 4pt !important;
-        margin-bottom: 4pt !important;
-    }
-
-    .diff-card {
-        background: #f8f9fa !important;
-        border: 1px solid #e2e8f0 !important;
-        border-radius: 4px !important;
-        padding: 4pt !important;
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-    }
-
-    .diff-card h4 {
-        font-size: 7.5pt !important;
-        font-weight: 800 !important;
-        text-transform: uppercase !important;
-        color: var(--accent) !important;
-        margin-bottom: 1.5pt !important;
-        letter-spacing: 0.3px !important;
-        line-height: 1.2 !important;
-    }
-
-    .diff-card p {
-        font-size: 7pt !important;
-        color: #475569 !important;
-        line-height: 1.35 !important;
-    }
-
-    /* ---- FERRAMENTAS — Tech (por categoria com labels) ---- */
-    .subsection-title {
-        font-size: 8pt !important;
-        font-weight: 800 !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.8px !important;
-        color: #334155 !important;
-        margin: 5pt 0 3pt !important;
-        border-bottom: 1px dashed #cbd5e1 !important;
-        padding-bottom: 1.5pt !important;
-    }
-
-    .tools-category-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 3pt !important;
-    }
-
-    .tools-group {
-        display: flex !important;
-        align-items: center !important;
-        gap: 4pt !important;
-        background: #f8f9fa !important;
-        border: 1px solid #e2e8f0 !important;
-        border-radius: 4px !important;
-        padding: 2pt 4pt !important;
-    }
-
-    .tools-group-label {
-        font-size: 6.8pt !important;
-        font-weight: 800 !important;
-        text-transform: uppercase !important;
-        color: var(--accent) !important;
-        letter-spacing: 0.3px !important;
-        white-space: nowrap !important;
-        min-width: 50pt !important;
-        display: flex !important;
-        align-items: center !important;
-        gap: 3pt !important;
-    }
-
-    .tools-group-label i { display: none !important; }
-
-    .tools-flex {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        gap: 3pt !important;
-    }
-
-    .tool-tag {
-        font-size: 7pt !important;
-        color: #334155 !important;
-        background: #ffffff !important;
-        border: 1px solid #cbd5e1 !important;
-        border-radius: 3px !important;
-        padding: 0.5pt 3pt !important;
-        font-weight: 600 !important;
-    }
-
-    .tool-tag i { display: none !important; }
-
-    /* ---- FERRAMENTAS — Marketing (plataformas em 4 colunas) ---- */
-    .tools-platform-grid {
-        display: grid !important;
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 3.5pt !important;
-        margin-top: 3.5pt !important;
-    }
-
-    .platform-card {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        background: #f8f9fa !important;
-        border: 1px solid #e2e8f0 !important;
-        border-radius: 4px !important;
-        padding: 3pt !important;
-        gap: 4pt !important;
-        transform: none !important;
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-    }
-
-    .platform-icon {
-        width: 11pt !important;
-        height: 11pt !important;
-        border-radius: 3px !important;
-        color: #fff !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        flex-shrink: 0 !important;
-    }
-
-    .platform-icon i {
-        width: 6.5pt !important;
-        height: 6.5pt !important;
-    }
-
-    .platform-info {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 0 !important;
-        width: 100% !important;
-    }
-
-    .platform-info strong {
-        font-size: 7pt !important;
-        font-weight: 700 !important;
-        color: #0f172a !important;
-        line-height: 1.2 !important;
-        display: block;
-    }
-
-    .platform-info span {
-        font-size: 6pt !important;
-        color: #475569 !important;
-        line-height: 1.2 !important;
-        display: block;
-    }
-
-    .platform-level {
-        display: none !important; /* Oculta a barra de progresso na impressão */
-    }
-
-    /* ---- FORMAÇÃO — Marketing (tabela no final) ---- */
-    .print-education-table {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 3pt !important;
-        margin-top: 4pt !important;
-    }
-
-    .print-edu-row {
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        padding: 2pt 0 !important;
-        border-bottom: 1px solid #f1f5f9 !important;
-    }
-
-    .print-edu-row:last-child {
-        border-bottom: none !important;
-    }
-
-    .print-edu-desc {
-        font-size: 7.5pt !important;
-        font-weight: 500 !important;
-        color: #1e293b !important;
-        flex: 1 !important;
-    }
-
-    .print-edu-date {
-        font-size: 7.5pt !important;
-        font-weight: 700 !important;
-        color: #475569 !important;
-        margin-left: 10pt !important;
-        min-width: 35pt !important;
-        text-align: right !important;
-    }
-
-    .print-edu-status {
-        margin-left: 10pt !important;
-        min-width: 50pt !important;
-        text-align: right !important;
-    }
-
-    .badge-status-print {
-        display: inline-block !important;
-        font-size: 6pt !important;
-        font-weight: 800 !important;
-        text-transform: uppercase !important;
-        color: #1e3a8a !important;
-        background: #dbeafe !important;
-        border: 1px solid #bfdbfe !important;
-        border-radius: 4px !important;
-        padding: 1pt 4pt !important;
-    }
-
-    /* ================================================================
-       CITAÇÃO FINAL
-       ================================================================ */
-    .cv-footer-quote {
-        background: #f8f9fa !important;
-        border: none !important;
-        border-radius: 4px !important;
-        padding: 4pt 6pt !important;
-        margin-top: 5pt !important;
-        text-align: left !important;
-        display: flex !important;
-        align-items: flex-start !important;
-        gap: 6pt !important;
-        border-left: 3px solid var(--accent) !important;
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-    }
-
-    .quote-icon {
-        display: inline !important;
-        width: 10pt !important;
-        height: 10pt !important;
-        color: var(--accent) !important;
-        opacity: 0.5 !important;
-        flex-shrink: 0 !important;
-        margin-top: 1pt !important;
-    }
-
-    .quote-text {
-        font-size: 7.5pt !important;
-        color: #334155 !important;
-        font-style: italic !important;
-        line-height: 1.35 !important;
-        -webkit-text-fill-color: #334155 !important;
-        margin: 0 !important;
-    }
-
-    /* ---- CONTROLE DE QUEBRA DE PÁGINA ---- */
-    .main-header-print     { page-break-inside: avoid !important; break-inside: avoid !important; }
-    .sidebar .section-card { page-break-inside: avoid !important; break-inside: avoid !important; }
-    .timeline-item         { page-break-inside: avoid !important; break-inside: avoid !important; }
-    .skill-card            { page-break-inside: avoid !important; break-inside: avoid !important; }
-    .diff-card             { page-break-inside: avoid !important; break-inside: avoid !important; }
-    .platform-card         { page-break-inside: avoid !important; break-inside: avoid !important; }
-    .tools-group           { page-break-inside: avoid !important; break-inside: avoid !important; }
-    .extra-container       { page-break-inside: avoid !important; break-inside: avoid !important; }
-    .main-column .section-card { page-break-inside: avoid !important; break-inside: avoid !important; }
 }
-
-
