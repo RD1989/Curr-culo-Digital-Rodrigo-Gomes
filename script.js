@@ -12,11 +12,52 @@ document.addEventListener("DOMContentLoaded", () => {
     const switchTech      = document.querySelector('[data-switch="tech"]');
     const switchMarketing = document.querySelector('[data-switch="marketing"]');
     const body            = document.body;
+    const themeToggleBtn  = document.getElementById("theme-toggle");
 
     // Elementos dinâmicos que mudam conforme o perfil
     const dynamicElements = document.querySelectorAll(
         '[data-profile="tech"], [data-profile="marketing"]'
     );
+
+    // 2b. Lógica para alternar Modo Escuro / Claro
+    function setThemeMode(mode) {
+        if (mode === "dark") {
+            body.setAttribute("data-theme-mode", "dark");
+            if (themeToggleBtn) {
+                themeToggleBtn.innerHTML = '<i data-lucide="sun"></i>';
+                themeToggleBtn.setAttribute("title", "Mudar para Modo Claro");
+            }
+            localStorage.setItem("rodrigo-cv-theme-mode", "dark");
+        } else {
+            body.setAttribute("data-theme-mode", "light");
+            if (themeToggleBtn) {
+                themeToggleBtn.innerHTML = '<i data-lucide="moon"></i>';
+                themeToggleBtn.setAttribute("title", "Mudar para Modo Escuro");
+            }
+            localStorage.setItem("rodrigo-cv-theme-mode", "light");
+        }
+        lucide.createIcons();
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", () => {
+            const currentMode = body.getAttribute("data-theme-mode");
+            if (currentMode === "dark") {
+                setThemeMode("light");
+            } else {
+                setThemeMode("dark");
+            }
+        });
+    }
+
+    // Inicialização do Modo Escuro (Salvo ou preferência do SO)
+    const savedThemeMode = localStorage.getItem("rodrigo-cv-theme-mode");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (savedThemeMode === "dark" || (!savedThemeMode && prefersDark)) {
+        setThemeMode("dark");
+    } else {
+        setThemeMode("light");
+    }
 
     // 3. Função para Alternar Perfil
     function switchProfile(profile) {

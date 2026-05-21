@@ -118,6 +118,67 @@ body[data-theme="marketing"] {
 }
 
 /* ================================================================
+   TEMA ESCURO - OVERRIDES (Foco em contraste premium e legibilidade)
+   ================================================================ */
+body[data-theme-mode="dark"][data-theme="tech"] {
+    --bg-page:              #0b0f19;
+    --bg-main:              #131a26;
+    --bg-card:              rgba(19, 26, 38, 0.94);
+    --bg-card-hover:        rgba(19, 26, 38, 1);
+    --bg-sidebar:           #060a12;
+    --bg-sidebar-item:      rgba(255, 255, 255, 0.04);
+    --bg-sidebar-item-hover:rgba(255, 255, 255, 0.08);
+    --bg-switcher:          rgba(255, 255, 255, 0.06);
+
+    --text-primary:         #f1f5f9;
+    --text-secondary:       #cbd5e1;
+    --text-muted:           #38bdf8;
+
+    --accent:               #0284c7;
+    --accent-rgb:           2, 132, 199;
+    --accent-dark:          #0369a1;
+    --accent-light:         #38bdf8;
+    --accent-subtle:        rgba(56, 189, 248, 0.12);
+    --accent-glow:          rgba(56, 189, 248, 0.22);
+
+    --border:               rgba(255, 255, 255, 0.10);
+    --border-hover:         rgba(56, 189, 248, 0.45);
+    --border-sidebar:       rgba(255, 255, 255, 0.09);
+
+    --glow-1: rgba(56, 189, 248, 0.1);
+    --glow-2: rgba(2, 132, 199, 0.06);
+}
+
+body[data-theme-mode="dark"][data-theme="marketing"] {
+    --bg-page:              #180c04;
+    --bg-main:              #261306;
+    --bg-card:              rgba(38, 19, 6, 0.94);
+    --bg-card-hover:        rgba(38, 19, 6, 1);
+    --bg-sidebar:           #0f0500;
+    --bg-sidebar-item:      rgba(255, 255, 255, 0.04);
+    --bg-sidebar-item-hover:rgba(255, 255, 255, 0.08);
+    --bg-switcher:          rgba(255, 255, 255, 0.06);
+
+    --text-primary:         #ffedd5;
+    --text-secondary:       #fed7aa;
+    --text-muted:           #f97316;
+
+    --accent:               #ea580c;
+    --accent-rgb:           234, 88, 12;
+    --accent-dark:          #c2410c;
+    --accent-light:         #fdba74;
+    --accent-subtle:        rgba(249, 115, 22, 0.12);
+    --accent-glow:          rgba(249, 115, 22, 0.22);
+
+    --border:               rgba(255, 255, 255, 0.10);
+    --border-hover:         rgba(249, 115, 22, 0.45);
+    --border-sidebar:       rgba(255, 255, 255, 0.09);
+
+    --glow-1: rgba(249, 115, 22, 0.1);
+    --glow-2: rgba(234, 88, 12, 0.06);
+}
+
+/* ================================================================
    VISIBILIDADE DINÂMICA DE PERFIS
    ================================================================ */
 body[data-theme="tech"]      [data-profile="marketing"] { display: none !important; }
@@ -374,6 +435,38 @@ body {
     flex-direction: column;
     align-items: flex-end;
     gap: 0.5rem;
+}
+
+.profile-header-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.theme-toggle-btn {
+    background: var(--bg-switcher);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+    background: rgba(var(--accent-rgb), 0.08);
+    color: var(--accent);
+    transform: scale(1.05);
+}
+
+.theme-toggle-btn i {
+    width: 20px;
+    height: 20px;
 }
 
 .switcher-label {
@@ -1754,6 +1847,27 @@ body.switching .profile-photo-wrapper {
         font-size: 9pt !important;
         color: #1e293b !important;
         line-height: 1.5 !important;
+    }
+
+    /* Força variáveis de alta fidelidade e contraste para impressão */
+    body {
+        --bg-page:              #ffffff !important;
+        --bg-main:              #ffffff !important;
+        --text-primary:         #0f172a !important;
+        --text-secondary:       #334155 !important;
+        --border:               #cbd5e1 !important;
+    }
+    
+    body[data-theme="tech"] {
+        --accent:               #0056d2 !important; /* Azul escuro corporativo */
+        --accent-dark:          #003fa3 !important;
+        --accent-subtle:        rgba(0, 86, 210, 0.08) !important;
+    }
+
+    body[data-theme="marketing"] {
+        --accent:               #ea580c !important; /* Laranja-coral escuro */
+        --accent-dark:          #c2410c !important;
+        --accent-subtle:        rgba(234, 88, 12, 0.08) !important;
     }
 
     /* ---- Ocultar elementos não imprimíveis ---- */
