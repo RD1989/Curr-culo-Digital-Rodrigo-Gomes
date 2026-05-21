@@ -16,11 +16,23 @@
 </head>
 <body data-theme="tech">
 
+    <!-- Barra de Carregamento Dinâmica -->
+    <div class="loading-bar" id="loading-bar"></div>
+
     <!-- Efeito de Fundo Abstrato -->
     <div class="bg-glow bg-glow-1"></div>
     <div class="bg-glow bg-glow-2"></div>
 
     <div class="app-container">
+
+        <!-- Banner de Dica Interativa (Onboarding) -->
+        <div class="onboarding-banner" id="onboarding-banner">
+            <div class="onboarding-content">
+                <i data-lucide="lightbulb" class="onboarding-icon"></i>
+                <p><strong>Dica Interativa:</strong> Este currículo possui duas versões! Use os botões do seletor abaixo para alternar entre as experiências de <strong>Tecnologia &amp; IA</strong> e <strong>Marketing Digital</strong>.</p>
+            </div>
+            <button class="onboarding-close-btn" id="onboarding-close" aria-label="Fechar dica">&times;</button>
+        </div>
 
         <!-- ============================================================
              HEADER / HERO
