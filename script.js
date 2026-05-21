@@ -165,19 +165,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     langBars.forEach(bar => langObserver.observe(bar));
 
-    // 7. Botão de Impressão — Prepara a página e chama window.print()
+    // 7. Botão de Impressão — Abre o arquivo PDF correspondente em uma nova aba
     const printBtn = document.querySelector(".print-btn");
     if (printBtn) {
         printBtn.addEventListener("click", () => {
-            // Garante que todos os elementos do perfil ativo estejam visíveis para a impressão.
-            // O @media print já controla a exibição via .active, mas forçamos o scroll ao topo
-            // para que o browser capture a página desde o início.
-            window.scrollTo({ top: 0 });
-
-            // Pequeno delay para o scroll terminar antes de abrir o diálogo de impressão
-            setTimeout(() => {
-                window.print();
-            }, 150);
+            const profile = body.getAttribute("data-theme") || "tech";
+            const pdfUrl = profile === "tech" ? "Tecnologia%20%26%20IA.pdf" : "Marketing%20Digital.pdf";
+            window.open(pdfUrl, "_blank");
         });
     }
 });
