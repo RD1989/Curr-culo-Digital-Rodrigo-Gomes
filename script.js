@@ -81,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            lucide.createIcons();
             localStorage.setItem("rodrigo-cv-profile", profile);
 
             if (loadingBar) {
@@ -154,14 +153,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const langObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const bar   = entry.target;
-                const width = bar.style.width;
-                bar.style.width = "0%";
-                setTimeout(() => { bar.style.width = width; }, 100);
-                observer.unobserve(bar);
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.2 });
 
     langBars.forEach(bar => langObserver.observe(bar));
 

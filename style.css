@@ -978,10 +978,15 @@ body[data-theme="marketing"] .switcher-bg {
 
 .lang-bar-inner {
     height: 100%;
+    width: 0;
     background: linear-gradient(90deg, var(--accent-light), var(--accent));
     border-radius: 100px;
     transition: width 1.2s var(--ease-smooth);
     position: relative;
+}
+
+.lang-bar-inner.visible {
+    width: var(--progress);
 }
 
 .lang-bar-inner::after {
@@ -2237,6 +2242,7 @@ body.switching .main-column {
     }
 
     .lang-bar-inner {
+        width: var(--progress) !important;
         height: 100% !important;
         background: var(--accent) !important;
         border-radius: 100px !important;

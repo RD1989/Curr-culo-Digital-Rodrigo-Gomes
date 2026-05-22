@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
     <!-- Estilos -->
     <link rel="stylesheet" href="style.css?v=3.0">
 </head>
@@ -44,7 +44,7 @@
 
                 <!-- Foto -->
                 <div class="profile-photo-wrapper">
-                    <img src="Foto.png" alt="Rodrigo Gomes" class="profile-photo">
+                    <img src="Foto.webp" alt="Rodrigo Gomes" class="profile-photo">
                     <div class="photo-ring"></div>
                 </div>
 
@@ -103,7 +103,7 @@
 
                 <!-- Foto de perfil para impressão (oculta na tela) -->
                 <div class="profile-photo-wrapper print-only-photo">
-                    <img src="Foto.png" alt="Rodrigo Gomes" class="profile-photo">
+                    <img src="Foto.webp" alt="Rodrigo Gomes" class="profile-photo">
                 </div>
 
 
@@ -269,12 +269,12 @@
                         <div class="lang-item">
                             <span class="lang-name">Português</span>
                             <span class="lang-level">Nativo</span>
-                            <div class="lang-bar-outer"><div class="lang-bar-inner" style="width:100%"></div></div>
+                            <div class="lang-bar-outer"><div class="lang-bar-inner" style="--progress:100%"></div></div>
                         </div>
                         <div class="lang-item">
                             <span class="lang-name">Inglês</span>
                             <span class="lang-level">Básico</span>
-                            <div class="lang-bar-outer"><div class="lang-bar-inner" style="width:30%"></div></div>
+                            <div class="lang-bar-outer"><div class="lang-bar-inner" style="--progress:30%"></div></div>
                         </div>
                     </div>
                 </section>
