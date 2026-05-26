@@ -1,6 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Inicializar os Ícones do Lucide
-    lucide.createIcons();
+    // 1. Inicializar os Ícones do Lucide (com tratamento de erro para resiliência offline)
+    try {
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        } else {
+            console.warn("Lucide não pôde ser carregado. Executando em modo de compatibilidade de ícones.");
+        }
+    } catch (error) {
+        console.error("Erro ao carregar Lucide:", error);
+    }
 
     // 1b. Inicializar imagem de QR Code para a impressão
     const qrImg = document.getElementById("print-qrcode-img");
